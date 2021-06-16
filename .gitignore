@@ -5,7 +5,6 @@ test/fixtures/books.fixture.js
 test/fixtures/accounts.fixture.js
 test/accounts.test.js
 node_modules
-.qualified-attach.json
+qualified-attach.json
 test
 docs
-.attachignore
