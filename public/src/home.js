@@ -7,35 +7,13 @@ function getTotalAccountsCount(accounts) {
 }
 
 function getBooksBorrowedCount(books) {
-  books.forEach((book) => console.log(book.borrows[0])) //seriously why?
+  books.forEach((book) => console.log(book.borrows[0]))
   return books.filter((book) => !book.borrows[0].returned).length
 }
 
-/*
-function getMostCommonGenres(books) {
-  let genres = []
-  books.forEach((book) => {
-    const currentBookGenre = book.genre
-    if(!genres[currentBookGenre]) {
-      genres.name = {[currentBookGenre], count = 1}
-    }
-    else 
-  })
-  return genres.sort((genreA, genreB) => genreA > genreB ? 1 : -1)
-}
-*/
-
-/*
-function getMostCommonGenres(books) {
-  let genres = books.reduce((acc, book) => {
-    if (!acc[book.genre]) {
-      acc[book.genre] = 1
-    }
-    else acc[book.genre]++
-    return acc
-  }, {})
-}
-*/
+function formatNeedlessObject(name, count) {
+  return {name: name, count: count}
+} //for helper function requirement
 
 function getMostCommonGenres(books) {
   const genresLogged = {}
@@ -57,9 +35,11 @@ function getMostPopularBooks(books) {
 // loop through books
   books.forEach((book) => {
 // for each iteration, push an object to topBooks with the book's name and its number of borrows
-    topBooks.push({name: book.title, count: book.borrows.length})
+    topBooks.push(formatNeedlessObject(book.title, book.borrows.length))
+    //topBooks.push({name: book.title, count: book.borrows.length})
   })
 // sort and slice
+  console.log(topBooks)
   return topBooks.sort((a,b) => a.count < b.count ? 1 : -1).slice(0,5)
 }
 
@@ -67,8 +47,6 @@ function getMostPopularBooks(books) {
 function getMostPopularAuthors(books, authors) {
 //create an array of all authors
   const allAuthors = [...authors]
-//create an array called allBooks?
-//create an array called result
 //loop through allAuthors
   allAuthors.forEach((author) => {
 //at each author, add totalBorrows key, then loop through allBooks
@@ -82,7 +60,8 @@ function getMostPopularAuthors(books, authors) {
   })
   allAuthors.sort((a,b) => a.totalBorrows < b.totalBorrows ? 1 : -1)
   let topAuthors = []
-  allAuthors.forEach((author) => {topAuthors.push({name: `${author.name.first} ${author.name.last}`, count: author.totalBorrows})})
+  //allAuthors.forEach((author) => topAuthors.push({name: `${author.name.first} ${author.name.last}`, count: author.totalBorrows}))
+  allAuthors.forEach((author) => topAuthors.push(formatNeedlessObject(`${author.name.first} ${author.name.last}`, author.totalBorrows)))
   return topAuthors.slice(0,5)
 }
 

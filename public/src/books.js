@@ -22,7 +22,17 @@ function partitionBooksByBorrowedStatus(books) {
   result.push(loaned, returned)
   return result
 }
-/*
+
+function getBorrowersForBook(book, accounts) {
+  let borrowers = book.borrows.map((borrow) => {
+    const someGuy = findAccountById(borrow.id)
+    return {...borrow, ...someguy}
+  })
+  return borrowers
+} //reqrote to use map and it looks better :)
+
+
+/* //old code
 function getBorrowersForBook(book, accounts) {
   let borrows = book.borrows.slice(0,10)
   return borrows.forEach((borrow) => {
