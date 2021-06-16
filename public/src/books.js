@@ -29,7 +29,7 @@ function getBorrowersForBook(book, accounts) {
     return {...borrow, ...someguy}
   })
   return borrowers
-} //reqrote to use map and it looks better :)
+} //rewrote to use map and it looks better :)
 
 
 /* //old code
